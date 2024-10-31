@@ -1,7 +1,10 @@
 package com.example.sistemadeimobliaria.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "imovel")
@@ -26,14 +29,24 @@ public class Imovel {
     @Column(name = "valor", length = 150)
     private Double valor;
 
-    @Column(name = "tipo", length = 150)
-    private String tipo;
-
     @Column(name = "numeroQuartos", length = 150)
     private Integer numeroQuartos;
 
+    @Column(name = "numeroBanheiros", length = 150)
+    private Integer numeroBanheiros;
 
+    @Column(name = "area", length = 150)
+    private Integer area;
 
+    @Column(name = "endereco", length = 150)
+    private String endereco;
+
+    @OneToMany(mappedBy = "imovel",
+            targetEntity = Contrato.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Corretor> corretor;
 
 
 
