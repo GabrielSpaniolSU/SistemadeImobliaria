@@ -40,6 +40,10 @@ public class Imovel {
 
     @Column(name = "endereco", length = 150)
     private String endereco;
+    @ManyToOne
+    @JoinColumn
+
+    private Contrato contrato;
 
     @OneToMany(mappedBy = "imovel",
             targetEntity = Contrato.class,
